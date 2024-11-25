@@ -6,20 +6,20 @@ from libs import wifi
 
 from umqtt.simple import MQTTClient
 
-SERVER = "192.168.0.102"
+SERVER = "47.109.21.40"
 PORT = 1883
 CLIENT_ID = 'micropython-client-{id}'.format(id=random.getrandbits(8))
-# USERNAME = 'emqx'
-# PASSWORD = 'public'
+USERNAME = 'admin'
+PASSWORD = '@WdteZu2y9&'
 TOPIC = "/mqtt"
 
-client = connect()
 
 
+client = None
 
 def connect():
     client = MQTTClient(CLIENT_ID, SERVER, PORT,
-    #                USERNAME, PASSWORD
+                   USERNAME, PASSWORD
     )
     client.connect()
     print('Connected to MQTT Broker "{server}"'.format(server = SERVER))
@@ -58,7 +58,10 @@ def loop_publish(client):
 
 def run():
     #链接wifi
-    wifi.connect()
+    wifi.connect_wifi()
+    #创建链接
+    global client
+    client = connect()
 
     subscribe(client)
     loop_publish(client)
