@@ -68,7 +68,7 @@ class Menu:
             #oled.fill(0)
             oled.show()
             #time.sleep(0.01)
-            oled.fill_rect(30, 55, 60, 30, 0)
+            oled.fill_rect(30, 55, 80, 30, 0)
             oled.text(self.items[self.selected_index].text, text_x,68-i, )
             self.toggle_animation_icon(self.items[self.selected_index])
             # 分割线和其他组成
@@ -124,9 +124,9 @@ def on_option_select():
     print("Option selected")
 
 items = [
-    MenuItem("ABC", WARNING_ICON_32,),
-    MenuItem("EFG", WARNING_ICON_32, on_option_select),
-    MenuItem("HIJ", WARNING_ICON_32)
+    MenuItem("Setting", WARNING_ICON_32,),
+    MenuItem("Menus1", WARNING_ICON_32, on_option_select),
+    MenuItem("BUG-TEST", WARNING_ICON_32)
 ]
 
 menu = Menu(items)
@@ -142,18 +142,6 @@ while True:
         menu.select()
     elif uesr == 's':
         menu.down()
-    time.sleep(0.1)
-
-
-
-
-
-
-
-
-
-
-
 
 
 

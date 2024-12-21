@@ -131,6 +131,27 @@ class SSD1306_I2C(SSD1306):
         pass
     def fill_rect(self, x, y, w, h, col):
         self.framebuf.fill_rect(x, y, w, h, col)
+    def icon(self,icon,icon_x,icon_y,R=False):
+        for y in range(len(icon)):
+            for x in range(len(icon[0])):
+                if icon[y][x] == 1:
+                    #oled.pixel(x + icon_x, y + icon_y, 1)
+                    self.framebuf.pixel(x + icon_x, y + icon_y, 0 if R else 1)
+                else:
+                    #oled.pixel(x + icon_x, y + icon_y, 0)
+                    self.framebuf.pixel(x + icon_x, y + icon_y, 1 if R else 0)
+    
+    
+    def icon_r(self,icon,icon_x,icon_y,R=False):
+        for y in range(len(icon)):
+            for x in range(len(icon[0])):
+                if icon[-y-1][-x-1] == 1:
+                    #oled.pixel(x + icon_x, y + icon_y, 1)
+                    self.framebuf.pixel(x + icon_x, y + icon_y, 0 if R else 1)
+                else:
+                    #oled.pixel(x + icon_x, y + icon_y, 0)
+                    self.framebuf.pixel(x + icon_x, y + icon_y, 1 if R else 0)
+    
 
 class SSD1306_SPI(SSD1306):
     def __init__(self, width, height, spi, dc, res, cs, external_vcc=False):
